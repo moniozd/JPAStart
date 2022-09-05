@@ -49,9 +49,5 @@ jobs:
         with:
           app-name: 'JPA2'
           slot-name: 'Production'
-<<<<<<< HEAD
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A3DDC1621EA74D72876EDFA6BDF57637 }}
-=======
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_76882E684B984871BA136CFC0BDCC44B }}
->>>>>>> origin/master
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1B2B249D1CF24DDEB1E1A831512D81DC }}
           package: '*.jar'
