@@ -4,6 +4,7 @@ import com.example.jpastart.model.Student;
 import com.example.jpastart.repository.StudentRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+@DataJpaTest
 class JpaStartApplicationTests {
 
     @Autowired
@@ -24,26 +25,21 @@ class JpaStartApplicationTests {
 
     @Test
     void testStudent() {
-        Student s1 = new Student();
-        s1.setBorn(LocalDate.now());
-        s1.setName("Bobz");
-        studentRepository.save(s1);
+        Student std1 = new Student();
+        std1.setBorn(LocalDate.now());
+        std1.setName("Annex");
+        studentRepository.save(std1);
+
+        Student std2 = new Student();
+        std2.setBorn(LocalDate.now());
+        std2.setName("Viggo");
+        studentRepository.save(std2);
 
         List<Student> lst = studentRepository.findAll();
-
-        assertEquals(3, lst.size());
-
-        studentRepository.delete(s1);
-        lst = studentRepository.findAll();
         assertEquals(2, lst.size());
 
-        Optional<Student> s3 = studentRepository.findById(1);
-        if (s3.isPresent()) {
-            Student ss3 = s3.get();
-            assertEquals(ss3.getName(), "Bobz");
-        }
-
-
+        studentRepository.delete(std1);
+        lst = studentRepository.findAll();
+        assertEquals(1, lst.size());
     }
-
 }
